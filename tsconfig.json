@@ -12,6 +12,8 @@
     "noImplicitAny": true,
     "baseUrl": ".",
     "suppressImplicitAnyIndexErrors": true,
+    "strictNullChecks":false,
+    "strictPropertyInitialization": false,
 
     "paths": {
       "*": ["types/*"]
