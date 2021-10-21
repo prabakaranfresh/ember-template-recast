@@ -103,7 +103,7 @@ export interface NodeInfo {
   postParamsWhitespace?: string;
 }
 
- const jsonStringify = (window.ItilUtil && window.ItilUtil.jsonStringifyWrapper) || JSON.stringify;
+ const jsonStringify = (typeof ItilUtil === 'undefined') ? JSON.stringify : window.ItilUtil && window.ItilUtil.jsonStringifyWrapper) || JSON.stringify;
 
 export default class ParseResult {
   private source: string[];
