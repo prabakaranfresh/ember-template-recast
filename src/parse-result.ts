@@ -1,9 +1,11 @@
 import { preprocess, print as _print, traverse, AST } from '@glimmer/syntax';
-import { jsonStringify, getLines, sortByLoc, sourceForLoc } from './utils';
+import { getLines, sortByLoc, sourceForLoc } from './utils';
 
 const leadingWhitespace = /(^\s+)/;
 const attrNodeParts = /(^[^=]+)(\s+)?(=)?(\s+)?(['"])?(\S+)?/;
 const hashPairParts = /(^[^=]+)(\s+)?=(\s+)?(\S+)/;
+
+const jsonStringify = (window.ItilUtil && window.ItilUtil.jsonStringifyWrapper) || JSON.stringify;
 
 const voidTagNames = new Set([
   'area',
