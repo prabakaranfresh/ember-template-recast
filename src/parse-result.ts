@@ -132,11 +132,17 @@ export default class ParseResult {
   private wrapNode(ancestor: any, node: any) {
     this.ancestor.set(node, ancestor);
     
-    let jsonStringify = (window.ItilUtil && window.ItilUtil.jsonStringifyWrapper) || JSON.stringify;
+
+    let nodeInfoOriginalObj = JSON.parse(JSON.stringify(node));
+    
+    if(window && (typeof window['ItilUtil'] !== 'undefined')) {
+      let jsonStringify = (window.ItilUtil && window.ItilUtil.jsonStringifyWrapper) || JSON.stringify;
+      nodeInfoOriginalObj = JSON.parse(jsonStringify(node));
+    }
 
     const nodeInfo = {
       node,
-      original: JSON.parse(jsonStringify(node)),
+      original: nodeInfoOriginalObj,
       source: this.sourceForLoc(node.loc),
     };
 
