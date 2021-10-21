@@ -103,6 +103,8 @@ export interface NodeInfo {
   postParamsWhitespace?: string;
 }
 
+ const jsonStringify = (window.ItilUtil && window.ItilUtil.jsonStringifyWrapper) || JSON.stringify;
+
 export default class ParseResult {
   private source: string[];
   private _originalAst: AST.Template;
@@ -127,7 +129,6 @@ export default class ParseResult {
     this.ast = this.wrapNode(null, ast);
   }
 
-  const jsonStringify = (window.ItilUtil && window.ItilUtil.jsonStringifyWrapper) || JSON.stringify;
   private wrapNode(ancestor: any, node: any) {
     this.ancestor.set(node, ancestor);
 
