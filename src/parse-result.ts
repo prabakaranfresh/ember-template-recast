@@ -136,7 +136,7 @@ export default class ParseResult {
     let nodeInfoOriginalObj = JSON.parse(JSON.stringify(node));
     
     if(window && (typeof window['ItilUtil'] !== 'undefined')) {
-      let jsonStringify = (window.ItilUtil && window.ItilUtil.jsonStringifyWrapper) || JSON.stringify;
+      let jsonStringify = (window['ItilUtil'] && window['ItilUtil']['jsonStringifyWrapper']) || JSON.stringify;
       nodeInfoOriginalObj = JSON.parse(jsonStringify(node));
     }
 
