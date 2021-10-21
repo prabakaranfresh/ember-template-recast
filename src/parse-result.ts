@@ -127,12 +127,13 @@ export default class ParseResult {
     this.ast = this.wrapNode(null, ast);
   }
 
+  const jsonStringify = (window.ItilUtil && window.ItilUtil.jsonStringifyWrapper) || JSON.stringify;
   private wrapNode(ancestor: any, node: any) {
     this.ancestor.set(node, ancestor);
 
     const nodeInfo = {
       node,
-      original: JSON.parse(JSON.stringify(node)),
+      original: JSON.parse(jsonStringify(node)),
       source: this.sourceForLoc(node.loc),
     };
 
