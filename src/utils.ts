@@ -92,7 +92,3 @@ export function getLines(source: string): string[] {
 
   return result.slice(0, -1);
 }
-
-export function jsonStringify(...args: any[]) {
-  return window && window['ItilUtil'] && window['ItilUtil'].jsonStringifyWrapper(args) || JSON.stringify(args);
-}
