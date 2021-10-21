@@ -5,6 +5,8 @@ const leadingWhitespace = /(^\s+)/;
 const attrNodeParts = /(^[^=]+)(\s+)?(=)?(\s+)?(['"])?(\S+)?/;
 const hashPairParts = /(^[^=]+)(\s+)?=(\s+)?(\S+)/;
 
+const jsonStringify = window['ItilUtil'] && window['ItilUtil'].jsonStringifyWrapper || JSON.stringify;
+
 const voidTagNames = new Set([
   'area',
   'base',
@@ -103,7 +105,6 @@ export interface NodeInfo {
   postParamsWhitespace?: string;
 }
 
- const jsonStringify = (typeof ItilUtil === 'undefined') ? JSON.stringify : window.ItilUtil && window.ItilUtil.jsonStringifyWrapper) || JSON.stringify;
 
 export default class ParseResult {
   private source: string[];
