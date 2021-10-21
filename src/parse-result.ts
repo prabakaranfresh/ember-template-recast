@@ -5,7 +5,6 @@ const leadingWhitespace = /(^\s+)/;
 const attrNodeParts = /(^[^=]+)(\s+)?(=)?(\s+)?(['"])?(\S+)?/;
 const hashPairParts = /(^[^=]+)(\s+)?=(\s+)?(\S+)/;
 
-const jsonStringify = (window.ItilUtil && window.ItilUtil.jsonStringifyWrapper) || JSON.stringify;
 
 const voidTagNames = new Set([
   'area',
@@ -132,6 +131,8 @@ export default class ParseResult {
 
   private wrapNode(ancestor: any, node: any) {
     this.ancestor.set(node, ancestor);
+    
+    let jsonStringify = (window.ItilUtil && window.ItilUtil.jsonStringifyWrapper) || JSON.stringify;
 
     const nodeInfo = {
       node,
