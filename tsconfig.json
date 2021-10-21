@@ -11,6 +11,7 @@
     "rootDir": "./src",
     "noImplicitAny": true,
     "baseUrl": ".",
+    "suppressImplicitAnyIndexErrors": true,
 
     "paths": {
       "*": ["types/*"]
