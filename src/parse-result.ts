@@ -5,6 +5,7 @@ const leadingWhitespace = /(^\s+)/;
 const attrNodeParts = /(^[^=]+)(\s+)?(=)?(\s+)?(['"])?(\S+)?/;
 const hashPairParts = /(^[^=]+)(\s+)?=(\s+)?(\S+)/;
 
+
 const voidTagNames = new Set([
   'area',
   'base',
@@ -103,6 +104,7 @@ export interface NodeInfo {
   postParamsWhitespace?: string;
 }
 
+
 export default class ParseResult {
   private source: string[];
   private _originalAst: AST.Template;
@@ -129,10 +131,18 @@ export default class ParseResult {
 
   private wrapNode(ancestor: any, node: any) {
     this.ancestor.set(node, ancestor);
+    
+
+    let nodeInfoOriginalObj = JSON.parse(JSON.stringify(node));
+    
+    if(window && (typeof window['ItilUtil'] !== 'undefined')) {
+      let jsonStringify = (window['ItilUtil'] && window['ItilUtil']['jsonStringifyWrapper']) || JSON.stringify;
+      nodeInfoOriginalObj = JSON.parse(jsonStringify(node));
+    }
 
     const nodeInfo = {
       node,
-      original: JSON.parse(JSON.stringify(node)),
+      original: nodeInfoOriginalObj,
       source: this.sourceForLoc(node.loc),
     };
 
