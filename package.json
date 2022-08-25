@@ -19,7 +19,8 @@
   "bin": "lib/bin.js",
   "files": [
     "lib/",
-    "!lib/**/*.test.*"
+    "!lib/**/*.test.*",
+    "bin"
   ],
   "scripts": {
     "build": "tsc",
